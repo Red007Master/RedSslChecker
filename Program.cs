@@ -56,9 +56,6 @@ class Program
             }
         }
 
-        // SslCertInfo result = RedSslUtils.CheckCertificateAsync("red007master.com").Result;
-        // Console.WriteLine(JsonConvert.SerializeObject(result, Formatting.Indented));
-
         switch (options.Output)
         {
             case OutputType.TUI:
