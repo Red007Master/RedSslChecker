@@ -40,6 +40,7 @@ public class DomainInfo
         else
         {
             Url = dataString;
+            Port = DefaultPort;
         }
     }
 }

@@ -46,8 +46,14 @@ class Program
         }
         else
         {
-            List<DomainInfo> domainInfos = RedSslUtils.FromFile(options.UrlsToTestFilePath);
-            sslCertInfos = RedSslUtils.CheckCertificatesAsync(domainInfos).Result;
+            if (File.Exists(options.UrlsToTestFilePath))
+            {
+                List<DomainInfo> domainInfos = RedSslUtils.FromFile(options.UrlsToTestFilePath);
+                sslCertInfos = RedSslUtils.CheckCertificatesAsync(domainInfos).Result;
+            }
+            else{
+                throw new FileNotFoundException($"The file '{options.UrlsToTestFilePath}' does not exist.");
+            }
         }
 
         // SslCertInfo result = RedSslUtils.CheckCertificateAsync("red007master.com").Result;
