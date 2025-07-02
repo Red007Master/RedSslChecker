@@ -101,6 +101,27 @@ public static class RedSslUtils
         }
 
         AnsiConsole.Write(table);
+
+        Console.WriteLine("\n");
+
+        foreach (SslCertInfo certInfo in sslCertInfos)
+        {
+            if (certInfo.Failed)
+            {
+                var rule = new Rule($"[red]Error in {certInfo.DomainInfo.Url}:{certInfo.DomainInfo.Port}[/]");
+                AnsiConsole.Write(rule);
+
+                if (certInfo.Ex != null)
+                {
+                    AnsiConsole.WriteException(certInfo.Ex, ExceptionFormats.Default);
+                }
+                else{
+                    AnsiConsole.WriteLine("No info");
+                }
+
+                Console.WriteLine("");
+            }
+        }
     }
 
     internal static string GetColor(SslStatus status)
